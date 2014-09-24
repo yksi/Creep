@@ -1,0 +1,10 @@
+c:\users\vitaliy\documents\visual studio 2013\Projects\Creep\Creep\bin\Debug\Creep.exe.config
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.csprojResolveAssemblyReference.cache
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.Properties.Resources.resources
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.csproj.GenerateResource.Cache
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\bin\Debug\Creep.exe
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\bin\Debug\Creep.pdb
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.exe
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.pdb
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\bin\Debug\MySql.Data.dll
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.Dashboard.resources
