@@ -8,9 +8,9 @@ namespace Creep
 {
     interface MyORM
     {
-        dynamic[] select();
-        bool insert();
+        //Object[] select();
+        bool save();
         bool delete();
-        bool update();
+        Object update();
     }
 }

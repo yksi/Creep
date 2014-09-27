@@ -8,3 +8,4 @@ C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Cre
 C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.pdb
 C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\bin\Debug\MySql.Data.dll
 C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.Dashboard.resources
+C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.Login.resources

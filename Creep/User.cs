@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Creep
 {
-    class User : MyORM
+    class User : CreepORM
     {
         private int ID;
         private string name;
@@ -22,5 +22,7 @@ namespace Creep
         {
             return new User(0);
         }
+
+        // MyORM Interface zone
     }
 }

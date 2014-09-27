@@ -10,7 +10,7 @@ namespace Creep
 {
     class Connect
     {
-        private MySqlConnection connection;
+        public MySqlConnection connection;
     
         public Connect() {
             Initialize();

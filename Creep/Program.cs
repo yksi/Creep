@@ -14,6 +14,8 @@ namespace Creep
         [STAThread]
         static void Main()
         {
+            //User user = new User(1);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
                 if (Identity.hasIdentity())

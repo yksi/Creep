@@ -16,5 +16,10 @@ namespace Creep
         {
             InitializeComponent();
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            this.button1.Text = User.getClassName();
+        }
     }
 }
