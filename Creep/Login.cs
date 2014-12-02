@@ -17,9 +17,28 @@ namespace Creep
             InitializeComponent();
         }
 
-        private void Login_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            this.button1.Text = User.getClassName();
+            this.button1.Enabled = false;
+
+            if (User.verifyPassword(this.emailLoginField.Text, this.passwordLoginField.Text))
+            {
+                this.Hide();
+                List<Object> user = User.temporary().findBy("email", this.emailLoginField.Text);
+                Variator.Logged_In_User = new User(int.Parse(user[0].ToString()), user[1].ToString(), user[2].ToString(), int.Parse(user[3].ToString()));
+                Dashboard dash = new Dashboard();
+                dash.Show();
+                Variator.main = this;
+                this.button1.Enabled = true;
+            }
+
+            else
+            {
+                MessageBox.Show("Email or password is invalid. Please try again or contact your administrator.");
+                this.button1.Enabled = true;
+            }
         }
+
+
     }
 }

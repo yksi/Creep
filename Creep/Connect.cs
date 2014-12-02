@@ -17,10 +17,11 @@ namespace Creep
         }
 
         private void Initialize(){
-            connection = new MySqlConnection("SERVER="+Variator.DB_CONNECT_HOST+
-                                             ";DATABASE="+Variator.DB_CONNECT_DATABASE+
-                                             ";UID="+Variator.DB_CONNECT_UID+
-                                             ";PASSWORD="+Variator.DB_CONNECT_PASSWORD);
+            string command = "SERVER=" + Variator.DB_CONNECT_HOST +
+                                             ";DATABASE=" + Variator.DB_CONNECT_DATABASE +
+                                             ";UID=" + Variator.DB_CONNECT_UID +
+                                             ";PASSWORD=" + Variator.DB_CONNECT_PASSWORD;
+            connection = new MySqlConnection(command);
         }
 
         public bool Open()
@@ -28,7 +29,7 @@ namespace Creep
             try
             {
                 connection.Open();
-                MessageBox.Show("Successfull");
+                Console.WriteLine("Successfull");
                 return true;
             }
             catch(MySqlException exception)
@@ -36,15 +37,16 @@ namespace Creep
                 switch(exception.Number)
                 {
                     case 0:
-                        MessageBox.Show("Error, while connection to database. Connect with your administrator!");
+                        Console.WriteLine("Error, while connection to database. Connect with your administrator!");
                         break;
                     case 1045:
-                        MessageBox.Show("Invalid username/password. Please check your credentials.");
+                        Console.WriteLine("Invalid username/password. Please check your credentials.");
                         break;
                 }
             }
             return false;
         }
+
 
         public bool Close()
         {
@@ -55,7 +57,7 @@ namespace Creep
             }
             catch(MySqlException exception)
             {
-                MessageBox.Show(exception.Message);
+                Console.WriteLine(exception.Message);
             }
             return false;
         }

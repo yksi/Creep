@@ -48,8 +48,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChooseUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseUser.Designer.cs">
+      <DependentUpon>ChooseUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connect.cs" />
+    <Compile Include="CreateDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateDepartment.Designer.cs">
+      <DependentUpon>CreateDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateReport.Designer.cs">
+      <DependentUpon>CreateReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateReportItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateReportItem.Designer.cs">
+      <DependentUpon>CreateReportItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateUser.Designer.cs">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreepORM.cs" />
+    <Compile Include="Department.cs" />
+    <Compile Include="EditUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUserRole.Designer.cs">
+      <DependentUpon>EditUserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FillReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FillReport.Designer.cs">
+      <DependentUpon>FillReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Identity.cs" />
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
@@ -66,12 +109,49 @@
     <Compile Include="MyORM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs" />
+    <Compile Include="ReportItem.cs" />
+    <Compile Include="ReportType.cs" />
+    <Compile Include="SpecifyReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpecifyReport.Designer.cs">
+      <DependentUpon>SpecifyReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UsersDepartment.cs" />
     <Compile Include="Variator.cs" />
+    <Compile Include="ViewReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewReport.Designer.cs">
+      <DependentUpon>ViewReport.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ChooseUser.resx">
+      <DependentUpon>ChooseUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateDepartment.resx">
+      <DependentUpon>CreateDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateReport.resx">
+      <DependentUpon>CreateReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateReportItem.resx">
+      <DependentUpon>CreateReportItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateUser.resx">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditUserRole.resx">
+      <DependentUpon>EditUserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FillReport.resx">
+      <DependentUpon>FillReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -85,6 +165,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SpecifyReport.resx">
+      <DependentUpon>SpecifyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewReport.resx">
+      <DependentUpon>ViewReport.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -8,9 +8,12 @@ namespace Creep
 {
     class Variator
     {
-        public static string DB_CONNECT_DATABASE = "CreepUser1";
+        public static string DB_CONNECT_DATABASE = "user1";
         public static string DB_CONNECT_HOST = "localhost";
-        public static string DB_CONNECT_UID = "root";
-        public static string DB_CONNECT_PASSWORD = "8712";
+        public static string DB_CONNECT_UID = "admin";
+        public static string DB_CONNECT_PASSWORD = "admin";
+        public static User Logged_In_User { get;set; }
+        public static Dashboard dash;
+        public static Login main;
     }
 }

@@ -9,3 +9,22 @@ C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Cre
 C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\bin\Debug\MySql.Data.dll
 C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.Dashboard.resources
 C:\Users\Vitaliy\documents\visual studio 2013\Projects\Creep\Creep\obj\Debug\Creep.Login.resources
+C:\Users\vitaliy\Documents\Creep\Creep\bin\Debug\Creep.exe.config
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.exe
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.csprojResolveAssemblyReference.cache
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.Dashboard.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.Login.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.Properties.Resources.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.csproj.GenerateResource.Cache
+C:\Users\vitaliy\Documents\Creep\Creep\bin\Debug\Creep.exe
+C:\Users\vitaliy\Documents\Creep\Creep\bin\Debug\Creep.pdb
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.pdb
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.CreateReport.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.SpecifyReport.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.CreateReportItem.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.FillReport.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.CreateDepartment.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.ChooseUser.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.CreateUser.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.ViewReport.resources
+C:\Users\vitaliy\Documents\Creep\Creep\obj\Debug\Creep.EditUserRole.resources

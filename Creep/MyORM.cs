@@ -9,7 +9,7 @@ namespace Creep
     interface MyORM
     {
         //Object[] select();
-        bool save();
+        int save();
         bool delete();
         Object update();
     }
