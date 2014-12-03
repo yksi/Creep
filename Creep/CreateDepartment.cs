@@ -66,7 +66,7 @@ namespace Creep
                     User manager_user = this.department == null ? User.find(User.getIdFromToString(this.departmentManager.Text), true) : Variator.Logged_In_User;
                     Department current_department = this.department == null ? new Department(0, this.departmentName.Text, manager_user.getID()) : this.department;
                     int department_id = this.department == null ? current_department.save() : current_department.getID();
-                    if (manager_user.getRole() < 1) { manager_user.setRole(1); manager_user.update(); }
+                    if (checkBox1.Checked && manager_user.getRole() < 1) { manager_user.setRole(1); manager_user.update(); }
                     if (this.department != null)
                     {
                         int index = 0;

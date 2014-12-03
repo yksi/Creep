@@ -431,6 +431,7 @@ namespace Creep
         private void BrowseUsers_Click(object sender, EventArgs e)
         {
             EditUserRole eur = new EditUserRole();
+            eur.Show();
         }
 
 

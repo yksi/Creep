@@ -235,9 +235,12 @@ namespace Creep
 
                 while(dataReader.Read())
                 {
-                    
-                    ResultSet.Add(dataReader.GetInt32(0));
-                    
+                    try
+                    {
+                        ResultSet.Add(dataReader.GetInt32(0));
+                    }
+
+                    catch (Exception e) { continue; }
                 }
             }
 

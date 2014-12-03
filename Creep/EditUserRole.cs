@@ -34,8 +34,10 @@ namespace Creep
 
         private void button1_Click(object sender, EventArgs e)
         {
-            current_user.setRole(this.comboBox2.SelectedIndex - 1);
-            current_user.save();
+            current_user.setRole(this.comboBox2.SelectedIndex != 2 ? this.comboBox2.SelectedIndex : 3);
+            current_user.update();
+
+            this.Close();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

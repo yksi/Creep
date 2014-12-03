@@ -205,6 +205,25 @@ namespace Creep
             return Odepartments;
         }
 
+        public static List<User> allAsObjects()
+        {
+            List<User> ResultSet = new List<User>();
+            foreach ( List<object> user_entity in User.temporary().all() )
+            {
+                ResultSet.Add( new User( User.getMappedEntity(user_entity) ) );
+            }
+
+            return allAsObjects();
+        }
+
+        public static List<User> findAllExceptMe()
+        {
+            List<User> all_users = allAsObjects();
+            all_users.Remove(Variator.Logged_In_User);
+
+            return all_users;
+        }
+
         public List<Department> getDepartments()
         {
             string query = "SELECT Ds.ID " +
