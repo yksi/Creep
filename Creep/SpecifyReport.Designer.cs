@@ -42,8 +42,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.addReportItem = new System.Windows.Forms.Button();
+            this.removeItem = new System.Windows.Forms.Button();
             this.report_type = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -67,6 +67,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(743, 279);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // Title
             // 
@@ -152,6 +153,7 @@
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Items";
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(654, 24);
@@ -173,24 +175,25 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // addReportItem
             // 
-            this.button3.Location = new System.Drawing.Point(57, 169);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Add";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.addReportItem.Location = new System.Drawing.Point(57, 169);
+            this.addReportItem.Name = "addReportItem";
+            this.addReportItem.Size = new System.Drawing.Size(75, 23);
+            this.addReportItem.TabIndex = 13;
+            this.addReportItem.Text = "Add";
+            this.addReportItem.UseVisualStyleBackColor = true;
+            this.addReportItem.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // removeItem
             // 
-            this.button4.Location = new System.Drawing.Point(138, 169);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(68, 23);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "Remove";
-            this.button4.UseVisualStyleBackColor = true;
+            this.removeItem.Location = new System.Drawing.Point(138, 169);
+            this.removeItem.Name = "removeItem";
+            this.removeItem.Size = new System.Drawing.Size(68, 23);
+            this.removeItem.TabIndex = 14;
+            this.removeItem.Text = "Remove";
+            this.removeItem.UseVisualStyleBackColor = true;
+            this.removeItem.Click += new System.EventHandler(this.removeItem_Click);
             // 
             // report_type
             // 
@@ -218,7 +221,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(153, 20);
             this.dateTimePicker1.TabIndex = 19;
             this.dateTimePicker1.TabStop = false;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label7
             // 
@@ -260,8 +262,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.Asignee);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.removeItem);
+            this.Controls.Add(this.addReportItem);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
@@ -295,8 +297,8 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Type;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isRequired;
         private System.Windows.Forms.DataGridViewTextBoxColumn DefaultText;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button addReportItem;
+        private System.Windows.Forms.Button removeItem;
         private System.Windows.Forms.ComboBox report_type;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

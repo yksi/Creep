@@ -51,7 +51,6 @@ namespace Creep
             }
 
             string query = "SELECT * FROM `" + this.GetType().Name + "s` " + after_select + " " + __QUERY__ + ";";
-
             List<List<Object>> objects = new List<List<Object>>();
             if(CreepORM.connect.Open())
             {
@@ -66,7 +65,7 @@ namespace Creep
                     for (int j = 0; j < count; j++)
                     {
                         args.Add(dataReader.GetValue(j));
-
+                            
                     }
 
                     objects.Add(args);
@@ -98,7 +97,6 @@ namespace Creep
         public List<List<Object>> findAllBy(string key, dynamic value)
         {
             return where("`" + key + "`" + " = '" + value.ToString() + "'");
-
         }
 
         public List<List<Object>> findAllByInt(string key, dynamic value)
@@ -143,7 +141,6 @@ namespace Creep
 
             foreach (object value in entityValues)
             {
-
                 if (value.GetType().Name == "Int32")
                 {
                     values.Add(value.ToString());
@@ -161,6 +158,7 @@ namespace Creep
             }
 
             string query = @"INSERT INTO `" + this.GetType().Name +  "s` (" + keys + ") VALUES (" + valuesString + ");";
+           
             if (CreepORM.connect.Open())
             {
                 MySqlCommand command = new MySqlCommand(query, CreepORM.connect.connection);
@@ -195,7 +193,7 @@ namespace Creep
                CreepORM.connect.Close();
             }
 
-            if (!resultSet.Equals(0)) return true;
+            if (!resultSet.Equals(0)) { return true; }
             return false;
         }
 
@@ -210,8 +208,6 @@ namespace Creep
                 command.Parameters.AddWithValue("@key1", value1);
                 command.Parameters.AddWithValue("@key2", value2);
 
-                MessageBox.Show(value1.ToString() + " <value1 | value2> " +  value2.ToString());
-
                 resultSet = command.ExecuteNonQuery();
                 CreepORM.connect.Close();
             }
@@ -220,10 +216,74 @@ namespace Creep
             return false;
         }
 
-        public bool delete()
+        public void delete()
         {
-            throw new NotImplementedException();
+            Dictionary<string, object> entity = this.getMappedEntity();
+            List<string> entityKeys = new List<string>(entity.Keys);
+            List<object> entityValues = new List<object>(entity.Values);
+            int ID = 0;
+
+            int count = 0;
+            int intern_count = 0;
+            string key_values = "";
+            foreach (string key in entityKeys)
+            {
+                if (key != "ID" && key != "created_at" && key != "updated_at" && key != "password")
+                {
+                    key_values += key + " = " + "@" + key;
+                    if (!key.Equals(entityKeys.Last()) && key != "ID") { key_values += " and "; }
+                }
+                count++;
+            }
+
+            List<Object> values = new List<Object>();
+
+            foreach (object value in entityValues)
+            {
+                if(value == null)
+                {
+                    values.Add("0");
+                }
+
+                else if (value.GetType().Name == "Int32")
+                {
+                        values.Add(value.ToString());                    
+                }
+
+                else if (value.GetType().Name == "Boolean")
+                {
+                    values.Add(Convert.ToInt32(bool.Parse(value.ToString())).ToString());
+                }
+
+                else if (value.GetType().Name == "String")
+                {
+                    values.Add(value.ToString());
+                }
+            }
+
+            
+
+            string query = @"delete from `" + this.GetType().Name + "s` where " + key_values;
+            query = query.Replace("and WHERE", " WHERE");
+            if (CreepORM.connect.Open())
+            {
+                MySqlCommand command = new MySqlCommand(query, CreepORM.connect.connection);
+                foreach (string key in entityKeys)
+                {
+                    if (key != "ID" && key != "created_at" && key != "updated_at" && key != "password")
+                    {
+                        command.Parameters.AddWithValue("@" + key, values[intern_count]);
+                    }
+
+                    intern_count++;
+                }
+                command.ExecuteReader();
+                ID = (int)command.LastInsertedId;
+            }
+
+            CreepORM.connect.Close();
         }
+        
 
         public static List<int> queryGetOneIntParam(string QUERY)
         {

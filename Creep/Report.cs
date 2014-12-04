@@ -35,6 +35,7 @@ namespace Creep
             this.created_at = database_entity["created_at"].ToString();
             this.updated_at = database_entity["updated_at"].ToString();
             this.due_date = database_entity["due_date"].ToString();
+            this.department_id = int.Parse(database_entity["department_id"].ToString());
         }
 
         public Report(int ID, int owner_id, int recipient_id, string title, string formatted_text, bool _checked, bool done, int type_id, string created_at, string updated_at, string due_date, int department_id)
@@ -174,6 +175,7 @@ namespace Creep
 
         public void setIsDone(bool p)
         {
+            this.done = p;
             this._checked = p;
         }
 
@@ -206,6 +208,68 @@ namespace Creep
         public string getUpdated()
         {
             return this.updated_at.ToString();
+        }
+
+        public string getDueDate()
+        {
+            return this.due_date;
+        }
+
+        public string getCreated()
+        {
+            return this.created_at.ToString();
+        }
+
+        public DateTime getExpiredDate()
+        {
+            return DateTime.ParseExact(this.getDueDate(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).AddDays(1);
+        }
+
+        public int getStatusCode()
+        {
+            if (this.getIsDone()) return 2;
+            if (this.getIsExpired()) return -1;
+            if (this.getIsFinished()) return 1;
+
+            return 0;
+        }
+
+        public string getStatus()
+        {
+            switch(this.getStatusCode())
+            {
+                case -1: return "Expired";
+                case 0: return "Not finished";
+                case 1: return "Finished";
+                case 2: return "Done";
+            }
+
+            return "Unknown status";
+        }
+
+        public string getStatusHTML()
+        {
+            string color = "black";
+
+            switch (this.getStatusCode())
+            {
+                case -1: { color = "red"; break; }
+                case 0: { color = "grey"; break; };
+                case 1: { color = "blue"; break; };
+                case 2: { color = "green"; break; };
+            }
+            
+            return string.Format("<b style='color:{0}'>{1}</b>", color, this.getStatus());
+        }
+
+        public bool getIsExpired()
+        {
+            return DateTime.Compare(this.getExpiredDate(), System.DateTime.Now) == -1 && !this.getIsDone() && !this.getIsFinished();
+        }
+
+        public string getDescription()
+        {
+            return this.formatted_text;
         }
     }
 }

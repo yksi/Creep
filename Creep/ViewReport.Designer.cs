@@ -30,10 +30,11 @@
         {
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.reportEdit = new System.Windows.Forms.Button();
             this.doneLabel = new System.Windows.Forms.Label();
             this.doneReport = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.reportEdit = new System.Windows.Forms.Button();
+            this.delete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +50,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.delete);
             this.panel1.Controls.Add(this.reportEdit);
             this.panel1.Controls.Add(this.doneLabel);
             this.panel1.Controls.Add(this.doneReport);
@@ -56,6 +58,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(694, 44);
             this.panel1.TabIndex = 1;
+            // 
+            // reportEdit
+            // 
+            this.reportEdit.Location = new System.Drawing.Point(9, 12);
+            this.reportEdit.Name = "reportEdit";
+            this.reportEdit.Size = new System.Drawing.Size(75, 23);
+            this.reportEdit.TabIndex = 3;
+            this.reportEdit.Text = "Edit Report";
+            this.reportEdit.UseVisualStyleBackColor = true;
+            this.reportEdit.Visible = false;
+            this.reportEdit.Click += new System.EventHandler(this.reportEdit_Click);
             // 
             // doneLabel
             // 
@@ -92,16 +105,15 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(700, 580);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // reportEdit
+            // delete
             // 
-            this.reportEdit.Location = new System.Drawing.Point(9, 12);
-            this.reportEdit.Name = "reportEdit";
-            this.reportEdit.Size = new System.Drawing.Size(75, 23);
-            this.reportEdit.TabIndex = 3;
-            this.reportEdit.Text = "Edit Report";
-            this.reportEdit.UseVisualStyleBackColor = true;
-            this.reportEdit.Visible = false;
-            this.reportEdit.Click += new System.EventHandler(this.reportEdit_Click);
+            this.delete.Location = new System.Drawing.Point(532, 12);
+            this.delete.Name = "delete";
+            this.delete.Size = new System.Drawing.Size(75, 23);
+            this.delete.TabIndex = 4;
+            this.delete.Text = "Delerte";
+            this.delete.UseVisualStyleBackColor = true;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // ViewReport
             // 
@@ -111,7 +123,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ViewReport";
             this.Text = "ViewReport";
-            this.Load += new System.EventHandler(this.ViewReport_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -127,6 +138,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label doneLabel;
         private System.Windows.Forms.Button reportEdit;
+        private System.Windows.Forms.Button delete;
 
     }
 }

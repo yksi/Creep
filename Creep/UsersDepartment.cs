@@ -11,7 +11,7 @@ namespace Creep
         private int department_id;
         private int user_id;
 
-        UsersDepartment(Dictionary<string, object> database_entity)
+        public UsersDepartment(Dictionary<string, object> database_entity)
         {
             this.department_id = int.Parse(database_entity["department_id"].ToString());
             this.user_id = int.Parse(database_entity["user_id"].ToString());

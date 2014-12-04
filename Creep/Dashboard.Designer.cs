@@ -46,8 +46,6 @@
             this.AddUser = new System.Windows.Forms.ToolStripMenuItem();
             this.AddDepartment = new System.Windows.Forms.ToolStripMenuItem();
             this.BrowseUsers = new System.Windows.Forms.ToolStripMenuItem();
-            this.BrowseDepartments = new System.Windows.Forms.ToolStripMenuItem();
-            this.settings = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -186,6 +184,7 @@
             this.createReportTask.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.createReportTask.Size = new System.Drawing.Size(216, 22);
             this.createReportTask.Text = "Create Report Task";
+            this.createReportTask.Click += new System.EventHandler(this.createReportTask_Click);
             // 
             // updateDashboard
             // 
@@ -214,9 +213,7 @@
             this.administrationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddUser,
             this.AddDepartment,
-            this.BrowseUsers,
-            this.BrowseDepartments,
-            this.settings});
+            this.BrowseUsers});
             this.administrationsToolStripMenuItem.Name = "administrationsToolStripMenuItem";
             this.administrationsToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.administrationsToolStripMenuItem.Text = "Administration";
@@ -224,35 +221,23 @@
             // AddUser
             // 
             this.AddUser.Name = "AddUser";
-            this.AddUser.Size = new System.Drawing.Size(183, 22);
+            this.AddUser.Size = new System.Drawing.Size(162, 22);
             this.AddUser.Text = "Add User";
             this.AddUser.Click += new System.EventHandler(this.AddUser_Click);
             // 
             // AddDepartment
             // 
             this.AddDepartment.Name = "AddDepartment";
-            this.AddDepartment.Size = new System.Drawing.Size(183, 22);
+            this.AddDepartment.Size = new System.Drawing.Size(162, 22);
             this.AddDepartment.Text = "Add Department";
             this.AddDepartment.Click += new System.EventHandler(this.AddDepartment_Click);
             // 
             // BrowseUsers
             // 
             this.BrowseUsers.Name = "BrowseUsers";
-            this.BrowseUsers.Size = new System.Drawing.Size(183, 22);
+            this.BrowseUsers.Size = new System.Drawing.Size(162, 22);
             this.BrowseUsers.Text = "Browse Users";
             this.BrowseUsers.Click += new System.EventHandler(this.BrowseUsers_Click);
-            // 
-            // BrowseDepartments
-            // 
-            this.BrowseDepartments.Name = "BrowseDepartments";
-            this.BrowseDepartments.Size = new System.Drawing.Size(183, 22);
-            this.BrowseDepartments.Text = "Browse Departments";
-            // 
-            // settings
-            // 
-            this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(183, 22);
-            this.settings.Text = "Settings";
             // 
             // infoToolStripMenuItem
             // 
@@ -506,8 +491,6 @@
         private System.Windows.Forms.ToolStripMenuItem AddUser;
         private System.Windows.Forms.ToolStripMenuItem AddDepartment;
         private System.Windows.Forms.ToolStripMenuItem BrowseUsers;
-        private System.Windows.Forms.ToolStripMenuItem BrowseDepartments;
-        private System.Windows.Forms.ToolStripMenuItem settings;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;

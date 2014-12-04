@@ -62,16 +62,13 @@ namespace Creep
                 List<List<object>> Reports = Report.temporary().findAllByInt("department_id", current_department.getID());
                 List<Report> OReports = new List<Report>();
 
-                int closed_in_count = 0;
-                int closed_ou_count = 0;
-
                 foreach (List<object> report in Reports)
                 {
                     OReports.Add(new Report(Report.getMappedEntity(report)));
                 }
 
                 string innerHTML = "<H1> " + current_department.getName() + " </H1>";
-                if (current_department.getManager().getID() == Variator.Logged_In_User.getID()) { innerHTML += "<a href='edit_current_department'> Edit Department </a>"; }
+                if (current_department.getManager().getID() == Variator.Logged_In_User.getID() || Variator.Logged_In_User.getRole() > 1) { innerHTML += "<a href='edit_current_department'> Edit Department </a>"; }
                 innerHTML += "<h3> Manager <b>" + manager.getName() + "</b></h3>";
 
                 innerHTML += "<h2> Department Workers </h2><ul>";
@@ -84,7 +81,7 @@ namespace Creep
                 innerHTML += "<h2> Department reports </h2><ul>";
                 foreach (Report report in OReports)
                 {
-                    innerHTML += "<li><a href='report:" + report.getID().ToString() + "'>" + report.getTitle() + " ( " + report.getType() + " ) to " + report.getAsignee() + " " + "</a>" + (report.getIsDone() ? " <b style='color: green'>✔ DONE</b>" : "") + "</li>";
+                    innerHTML += "<li><a href='report:" + report.getID().ToString() + "'>" + report.getTitle() + " ( " + report.getType() + " ) to " + report.getAsignee() + " " + "</a>" + report.getStatusHTML() + "</li>";
                 }
                 innerHTML += "</ul>";
 
@@ -100,7 +97,7 @@ namespace Creep
 
         public void updateUserInfo()
         {
-            User See = (see_user == null) ? Variator.Logged_In_User : see_user;
+            User See = (see_user == null || see_user.getID() == Variator.Logged_In_User.getID()) ? Variator.Logged_In_User : see_user;
 
             List<List<object>> departments = Department.temporary().findAllByInt("manager_id", See.getID());
             List<List<object>> reports_created = Report.temporary().findAllByInt("owner_id", See.getID());
@@ -141,14 +138,14 @@ namespace Creep
             innerHTML += "<h2> Created reports </h2><ul>";
             foreach(Report report in OCreports_all)
             {
-                innerHTML += "<li><a href='report:" + report.getID().ToString() + "'>" + report.getTitle() + " ( " + report.getType() + " ) to " + report.getAsignee() + " " + "</a>" + (report.getIsDone() ? " <b style='color: green'>✔ DONE</b>" : "") + "</li>";
+                innerHTML += "<li><a href='report:" + report.getID().ToString() + "'>" + report.getTitle() + " ( " + report.getType() + " ) to " + report.getAsignee() + " " + "</a>" + report.getReporter() + " " + "</a>" + report.getStatusHTML() + "</li>";
             }
             innerHTML += "</ul>";
 
             innerHTML += "<h2> Asigned reports </h2><ul>";
             foreach (Report report in ORreports_all)
             {
-                innerHTML += "<li><a href='report:" + report.getID().ToString() + "'>" + report.getTitle() + " ( " + report.getType() + " ) from " + report.getReporter() + " " + "</a>" + (report.getIsDone() ? "<b style='color: green'>✔ DONE</b>" : "") + "</li>";
+                innerHTML += "<li><a href='report:" + report.getID().ToString() + "'>" + report.getTitle() + " ( " + report.getType() + " ) from " + report.getReporter() + " " + "</a>" + report.getStatusHTML() + "</li>";
             }
             innerHTML += "</ul>";
 
@@ -170,6 +167,7 @@ namespace Creep
             userInfo.Document.OpenNew(false);
             userInfo.Document.Write("<body><style> body { font-family: Arial }</style><div>" + innerHTML + "</div> </body>");
             userInfo.Refresh();
+            this.dash_tabs.SelectTab(0);
         }
 
         public void updateStatistics()
@@ -214,7 +212,7 @@ namespace Creep
 
             statisticInfo.Navigate("about:blank");
             statisticInfo.Document.OpenNew(false);
-            statisticInfo.Document.Write("<body><style> body { font-family: Arial }</style><div>" + innerHTML + "</div> </body>");
+            statisticInfo.Document.Write(Variator.getBodyHTMLFromString(innerHTML));
             statisticInfo.Refresh();
         }
 
@@ -235,9 +233,9 @@ namespace Creep
             {
                 Dictionary<string, object> mapped_report = Report.getMappedEntity(report);
                 Report tmp_report = new Report(mapped_report);
-                if(!tmp_report.getIsDone())
+                if(!tmp_report.getIsDone() && !tmp_report.getIsExpired())
                 {
-                    this.reportAssignedToMeView.Items.Add(new ListViewItem(tmp_report.getTitle()));
+                    this.reportAssignedToMeView.Items.Add(tmp_report.getTitle() + " (" + tmp_report.getStatus() + ")");
                     this.reportsAssignedToMe.Add(mapped_report);
                 }
             }
@@ -287,6 +285,11 @@ namespace Creep
         }
 
         private void reloadDash_Click(object sender, EventArgs e)
+        {
+            this.updateDash();
+        }
+
+        public void updateDash()
         {
             updateReportsAssignedToMe();
             updateReportsReportedFromMe();
@@ -425,13 +428,42 @@ namespace Creep
 
         private void statisticInfo_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
+            string URL = e.Url.ToString();
+            if (URL != "about:blank")
+            {
+                this.Text = URL;
 
+                if (URL.IndexOf("report:") != -1)
+                {
+                    ViewReport vrep = new ViewReport(new Report(Report.getMappedEntity(Report.temporary().find(int.Parse(URL.Replace("report:", ""))))));
+                    vrep.Show();
+                }
+
+                else if (URL.IndexOf("user:") != -1)
+                {
+                    see_user = User.find(int.Parse(URL.Replace("user:", "")), true);
+                    updateUserInfo();
+                }
+
+                else if (URL.IndexOf("department:") != -1)
+                {
+                    current_department = Department.find(int.Parse(URL.Replace("department:", "")), true);
+                    updateDashDepartment();
+                }
+
+                e.Cancel = true;
+            }
         }
 
         private void BrowseUsers_Click(object sender, EventArgs e)
         {
             EditUserRole eur = new EditUserRole();
             eur.Show();
+        }
+
+        private void createReportTask_Click(object sender, EventArgs e)
+        {
+            this.button2_Click(sender, e);
         }
 
 

@@ -84,11 +84,6 @@ namespace Creep
             new_item.Show();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show(dateTimePicker1.Text);
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -103,6 +98,19 @@ namespace Creep
             {
                 Asignee.Items.Add(cur_user.ToString());
             }
+        }
+
+        private void removeItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in this.dataGridView1.SelectedRows)
+            {
+                this.dataGridView1.Rows.Remove(row);
+            }
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this.dataGridView1.Rows[e.RowIndex].Selected = true; 
         }
     }
 }

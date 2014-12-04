@@ -15,5 +15,10 @@ namespace Creep
         public static User Logged_In_User { get;set; }
         public static Dashboard dash;
         public static Login main;
+
+        public static string getBodyHTMLFromString(string InnerHTML)
+        {
+            return "<body><style> body { font-family: Arial; } th, td { padding: 3px; border: 1px solid grey; } }</style><div>" + InnerHTML + "</div> </body>";
+        }
     }
 }

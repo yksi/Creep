@@ -40,11 +40,15 @@ namespace Creep
             this.AllUsers = User.temporary().all();
             this.departmentManager.Items.Add(department.getManager().ToString());
             this.departmentManager.Text = this.departmentManager.Items[0].ToString();
-            this.departmentManager.Enabled = false;
+            if (Variator.Logged_In_User.getRole() < 2) { this.departmentManager.Enabled = false; this.button5.Hide(); }
             department_users = this.department.getUsers();
             foreach(User department_user in department_users)
             {
                 departmentUserList.Items.Add(department_user.ToString());
+            }
+            foreach (List<object> user in this.AllUsers)
+            {
+                this.departmentManager.Items.Add((new User(User.getMappedEntity(user))).ToString());
             }
 
         }
@@ -57,7 +61,7 @@ namespace Creep
         private void button4_Click(object sender, EventArgs e)
         {
 
-            if (this.departmentName.Text == "") { MessageBox.Show("Please specify Department name"); }
+            if (this.departmentName.Text == "") { MessageBox.Show("Please specify Department name"); return; }
             else
             {
 
@@ -84,7 +88,7 @@ namespace Creep
                     }
 
                     current_department.setName(this.departmentName.Text);
-                    if(current_department.getID() != 0) 
+                    if(department != null) 
                     {
                         current_department.update();
                     } 
@@ -104,12 +108,20 @@ namespace Creep
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(this.departmentUserList.SelectedIndices.Count == 1)
-            {
-                int index = this.departmentUserList.SelectedIndices[0];
+            int index = this.departmentUserList.SelectedIndices[0];
                 
-                this.departmentUserList.Items.RemoveAt(index);
-                this.department_users.RemoveAt(index);
+            this.departmentUserList.Items.RemoveAt(index);
+            this.department_users.RemoveAt(index);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.department.delete();
+            List<UsersDepartment> user_departs = new List<UsersDepartment> ();
+
+            foreach( List<object> entity in UsersDepartment.temporary().findAllByInt("department_id", this.department.getID()) )
+            {
+                UsersDepartment user_depart = new UsersDepartment( UsersDepartment.getMappedEntity(entity) );
             }
         }
     }

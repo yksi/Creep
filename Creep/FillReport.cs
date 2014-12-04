@@ -25,13 +25,21 @@ namespace Creep
         {
             InitializeComponent();
             this.report = new Report(report);
-            this.reportTitleView.Text = report["title"].ToString();
-            if (this.report.getIsFinished()) this.reportTitleView.Text += " (DONE)";
-            else this.reportTitleView.Text += " (IN PROCESS)";
-            this.reportDescView.Text = report["formatted_text"].ToString();
-            this.reporterName.Text = (new User(User.getMappedEntity(User.temporary().find(int.Parse(report["owner_id"].ToString()))))).getName();
-            this.report_assignee.Text = (new User(User.getMappedEntity(User.temporary().find(int.Parse(report["recipient_id"].ToString()))))).getName();
-            this.due_date.Text = report["due_date"].ToString();
+
+            string titleDesc = "<h2 align='center'>" + this.report.getTitle() + "</h2>";
+            titleDesc += "<h5>" + this.report.getDescription() + "</h5>";
+
+            this.webBrowser2.DocumentText = Variator.getBodyHTMLFromString(titleDesc);
+
+            string innerHTML = "<h5> Created at: " + this.report.getCreated() + "</h5>";
+            innerHTML += "<h5> Updated at: " + this.report.getUpdated() + "</h5>";
+            innerHTML += "<h5> Reporter: " + this.report.getReporter() + "</h5>";
+            innerHTML += "<h5> Assignee: " + this.report.getAsignee() + "</h5>";
+            innerHTML += "<h5> Expired at: " + this.report.getExpiredDate() + "</h5>";
+            innerHTML += "<h5> Status: " + this.report.getStatusHTML() + "</h5>";
+
+            this.webBrowser1.DocumentText = Variator.getBodyHTMLFromString(innerHTML);
+
             this.reportContentView.AutoScroll = true;
 
             this.report_as_object = new Report(report);
@@ -137,7 +145,13 @@ namespace Creep
 
         private void FillReport_Load(object sender, EventArgs e)
         {
-
+            if (this.report.getIsExpired() || this.report.getIsDone())
+            {
+                ViewReport v_exp_report = new ViewReport(this.report);
+                v_exp_report.Show();
+                this.Close();
+                return;
+            }
         }
 
         private void report_save_Click(object sender, EventArgs e)
